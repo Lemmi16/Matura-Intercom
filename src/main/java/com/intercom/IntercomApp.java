@@ -42,6 +42,7 @@ public class IntercomApp extends Application {
     }
 
     private Room determineRoom() {
+        // first we check if the room ID was passed to the program ... then use that room
         String roomId = System.getProperty("room");
         if (roomId != null) {
             System.out.println("room id = " + roomId);
@@ -51,6 +52,7 @@ public class IntercomApp extends Application {
                 }
             }
         } else {
+            // if no room has been passed then we find the room by matching the computer's name to the room
             try {
                 String hostName = InetAddress.getLocalHost().getHostName();
                 System.out.println("local host name: " + hostName);
