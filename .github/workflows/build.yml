@@ -26,6 +26,6 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Compiling all
-        run: ./mvn --no-transfer-progress install -DskipTests=True
+        run: mvn --no-transfer-progress install -DskipTests=True
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
