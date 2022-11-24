@@ -1,0 +1,85 @@
+{
+  "rooms": [
+    {
+      "name": "Philip",
+      "hostName": "crowpi.local",
+      "port": "8080",
+      "availableActions": [
+        "come"
+      ],
+      "id": "philip"
+    },
+    {
+      "name": "Jule",
+      "hostName": "localhost",
+      "port": "8081",
+      "availableActions": [
+        "come"
+      ],
+      "id": "jule"
+    },
+    {
+      "name": "Armin",
+      "hostName": "localhost",
+      "port": "8082",
+      "availableActions": [
+        "come"
+      ],
+      "id": "armin"
+    },
+    {
+      "name": "Küche",
+      "hostName": "localhost",
+      "port": "8083",
+      "availableActions": [
+        "duty",
+        "sleep",
+        "come",
+        "teeth",
+        "shower",
+        "homework"
+      ],
+      "id": "kitchen"
+    },
+    {
+      "name": "Büro",
+      "hostName": "localhost",
+      "port": "8084",
+      "availableActions": [
+        "duty",
+        "sleep",
+        "come",
+        "teeth",
+        "shower",
+        "homework"
+      ],
+      "id": "office"
+    }
+  ],
+  "actions": [
+    {
+      "name": "Ämtli",
+      "id": "duty"
+    },
+    {
+      "name": "Schlafen",
+      "id": "sleep"
+    },
+    {
+      "name": "Bitte kommen",
+      "id": "come"
+    },
+    {
+      "name": "Hausaufgaben",
+      "id": "homework"
+    },
+    {
+      "name": "Zähneputzen",
+      "id": "teeth"
+    },
+    {
+      "name": "Duschen",
+      "id": "shower"
+    }
+  ]
+}

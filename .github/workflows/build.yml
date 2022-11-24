@@ -1,0 +1,31 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 18
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 18
+
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Compiling all
+        run: ./mvn --no-transfer-progress install -DskipTests=True
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPLOY_GITHUB_TOKEN }}
