@@ -11,28 +11,39 @@
 }
 
 .start-screen {
-    -fx-background-color: orange;
+    -fx-background-color: rgba(53, 75, 155, 1);
+}
+
+.start-screen .label {
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+}
+
+.start-screen .label .ikonli-font-icon {
+    -fx-icon-color: white;
+    -fx-icon-size: 64;
 }
 
 .sending-screen {
     -fx-background-color: silver;
 }
 
-.start-screen .label {
-    -fx-text-fill: black;
-    -fx-font-size: 32px;
-}
-
-.start-screen .label .ikonli-font-icon {
-    -fx-icon-color: black;
-    -fx-icon-size: 64;
-}
-
 .action-screen {
-    -fx-background-color: white;
+    -fx-spacing: 2px;
+    -fx-background-color: rgba(69, 94, 166, 1);
 }
 
-.action-screen .button {
+.action-screen .vbox {
+    -fx-spacing: 2px;
+}
+
+.action-screen .vbox .action-button {
+    -fx-alignment: center-left;
+    -fx-padding: 0px 20px;
+    -fx-background-color: rgba(53, 75, 155, 1);
+    -fx-background-radius: 0px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
 .room-screen {
@@ -83,7 +94,7 @@
 
 .cancel-button {
     -fx-text-fill: white;
-    -fx-background-color: red;
+    -fx-background-color: crimson !important;
     -fx-pref-height: 50px;
 }
 

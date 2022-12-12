@@ -7,6 +7,8 @@ import com.intercom.model.Config.Room;
 import com.intercom.model.Request;
 import com.intercom.model.Response;
 import com.intercom.model.Response.Status;
+import com.intercom.views.screens.ActionScreen;
+import com.intercom.views.screens.StartScreen;
 import io.helidon.common.reactive.Single;
 import io.helidon.webserver.Routing;
 import io.helidon.webserver.WebServer;
@@ -19,7 +21,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.control.ToggleButton;
@@ -27,8 +28,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import org.kordamp.ikonli.javafx.FontIcon;
-import org.kordamp.ikonli.materialdesign.MaterialDesign;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -194,7 +193,7 @@ public class IntercomView extends StackPane {
         return selectedAction.get();
     }
 
-    private void setSelectedAction(Action selectedAction) {
+    public void setSelectedAction(Action selectedAction) {
         this.selectedAction.set(selectedAction);
     }
 
@@ -204,7 +203,11 @@ public class IntercomView extends StackPane {
         return selectedRooms;
     }
 
-    private enum Screen {
+    public Config getConfig() {
+        return config;
+    }
+
+    public enum Screen {
         START,
         ACTIONS,
         ROOMS,
@@ -227,14 +230,9 @@ public class IntercomView extends StackPane {
     }
 
     private Node createStartScreen() {
-        Label label = new Label("Intercom - " + room.getName());
-        label.setGraphic(new FontIcon(MaterialDesign.MDI_WIFI));
-        label.setContentDisplay(ContentDisplay.TOP);
-
-        StackPane pane = new StackPane(label);
-        pane.getStyleClass().add("start-screen");
-        pane.setOnMouseClicked(evt -> setScreen(Screen.ACTIONS));
-        return pane;
+        StartScreen screen = new StartScreen(room);
+        screen.setOnMouseClicked(evt -> setScreen(Screen.ACTIONS));
+        return screen;
     }
 
     private Node createConfirmationScreen() {
@@ -305,29 +303,7 @@ public class IntercomView extends StackPane {
     }
 
     private Node createActionsScreen() {
-        VBox box = new VBox();
-        box.getStyleClass().add("action-screen");
-
-        config.getActions().forEach(action -> {
-            Button button = new Button(action.getName());
-            button.getStyleClass().add("action-button");
-            button.setOnAction(evt -> {
-                setSelectedAction(action);
-                setScreen(Screen.ROOMS);
-            });
-            box.getChildren().add(button);
-            button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            VBox.setVgrow(button, Priority.ALWAYS);
-        });
-
-        Button cancelButton = new Button("CANCEL");
-        cancelButton.getStyleClass().add("cancel-button");
-        cancelButton.setOnAction(evt -> setScreen(Screen.START));
-        cancelButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        VBox.setVgrow(cancelButton, Priority.ALWAYS);
-
-        box.getChildren().add(cancelButton);
-        return box;
+        return new ActionScreen(this);
     }
 
     private Node createRoomsScreen() {
