@@ -2,8 +2,8 @@
   "rooms": [
     {
       "name": "Philip",
-      "hostName": "crowpi.local",
-      "port": "8080",
+      "hostName": "philip.local",
+      "port": "80",
       "availableActions": [
         "come"
       ],
@@ -11,8 +11,8 @@
     },
     {
       "name": "Jule",
-      "hostName": "localhost",
-      "port": "8081",
+      "hostName": "jule.local",
+      "port": "80",
       "availableActions": [
         "come"
       ],
@@ -20,8 +20,8 @@
     },
     {
       "name": "Armin",
-      "hostName": "localhost",
-      "port": "8082",
+      "hostName": "armin.local",
+      "port": "80",
       "availableActions": [
         "come"
       ],
@@ -29,8 +29,8 @@
     },
     {
       "name": "Küche",
-      "hostName": "localhost",
-      "port": "8083",
+      "hostName": "kitchen.local",
+      "port": "80",
       "availableActions": [
         "duty",
         "sleep",
@@ -43,8 +43,8 @@
     },
     {
       "name": "Büro",
-      "hostName": "localhost",
-      "port": "8084",
+      "hostName": "office.local",
+      "port": "80",
       "availableActions": [
         "duty",
         "sleep",
