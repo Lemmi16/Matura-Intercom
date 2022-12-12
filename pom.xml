@@ -25,7 +25,7 @@
         <!-- Setup for the RaspPi -->
         <pi.username>pi</pi.username>
         <pi.password>crowpi</pi.password>
-        <pi.ipnumber>crowpi.local</pi.ipnumber>
+        <pi.ipnumber>kitchen.local</pi.ipnumber>
         <pi.port>22</pi.port>
         <pi.deploydirectory>/home/pi/deploy</pi.deploydirectory>
         <pi.remote.jvmOptions/>
