@@ -28,16 +28,17 @@
     -fx-background-color: silver;
 }
 
-.action-screen {
+.screen {
     -fx-spacing: 2px;
     -fx-background-color: rgba(69, 94, 166, 1);
 }
 
-.action-screen .vbox {
+.screen .vbox {
     -fx-spacing: 2px;
 }
 
-.action-screen .vbox .action-button {
+.screen .vbox .action-button,
+.screen .vbox .room-button {
     -fx-alignment: center-left;
     -fx-padding: 0px 20px;
     -fx-background-color: rgba(53, 75, 155, 1);
@@ -46,8 +47,14 @@
     -fx-font-weight: bold;
 }
 
-.room-screen {
-    -fx-background-color: white;
+.screen .vbox .room-button {
+    -fx-content-display: right;
+}
+
+.screen .vbox .room-button .ikonli-font-icon {
+    -fx-icon-color: rgba(151, 190, 77,1);
+    -fx-icon-size: 20px;
+
 }
 
 .response-screen {
@@ -94,13 +101,15 @@
 
 .cancel-button {
     -fx-text-fill: white;
+    -fx-font-weight: bold;
     -fx-background-color: crimson !important;
     -fx-pref-height: 50px;
 }
 
 .send-button {
     -fx-text-fill: white;
-    -fx-background-color: green;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(151, 190, 77,1);
     -fx-pref-height: 50px;
 }
 

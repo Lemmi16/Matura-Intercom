@@ -8,6 +8,7 @@ import com.intercom.model.Request;
 import com.intercom.model.Response;
 import com.intercom.model.Response.Status;
 import com.intercom.views.screens.ActionScreen;
+import com.intercom.views.screens.RoomsScreen;
 import com.intercom.views.screens.StartScreen;
 import io.helidon.common.reactive.Single;
 import io.helidon.webserver.Routing;
@@ -199,12 +200,16 @@ public class IntercomView extends StackPane {
 
     private final ObservableList<Room> selectedRooms = FXCollections.observableArrayList();
 
-    private ObservableList<Room> getSelectedRooms() {
+    public ObservableList<Room> getSelectedRooms() {
         return selectedRooms;
     }
 
     public Config getConfig() {
         return config;
+    }
+
+    public Room getRoom() {
+        return room;
     }
 
     public enum Screen {
@@ -230,9 +235,7 @@ public class IntercomView extends StackPane {
     }
 
     private Node createStartScreen() {
-        StartScreen screen = new StartScreen(room);
-        screen.setOnMouseClicked(evt -> setScreen(Screen.ACTIONS));
-        return screen;
+        return new StartScreen(this);
     }
 
     private Node createConfirmationScreen() {
@@ -307,57 +310,10 @@ public class IntercomView extends StackPane {
     }
 
     private Node createRoomsScreen() {
-        VBox box = new VBox();
-        box.getStyleClass().add("room-screen");
-
-        config.getRooms().forEach(r -> {
-            // do not add own room
-            if (!r.equals(room)) {
-                ToggleButton button = new ToggleButton(r.getName());
-                getSelectedRooms().addListener((Observable it) -> button.setSelected(getSelectedRooms().contains(r)));
-                button.getStyleClass().add("room-button");
-                button.selectedProperty().addListener(it -> {
-                    if (button.isSelected()) {
-                        getSelectedRooms().add(r);
-                    } else {
-                        getSelectedRooms().remove(r);
-                    }
-                });
-                box.getChildren().add(button);
-                button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-                VBox.setVgrow(button, Priority.ALWAYS);
-            }
-        });
-
-        Separator separator = new Separator();
-        separator.setMaxWidth(Double.MAX_VALUE);
-        VBox.setVgrow(separator, Priority.NEVER);
-
-        Button cancelButton = new Button("CANCEL");
-        cancelButton.setPrefWidth(1);
-        cancelButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        cancelButton.getStyleClass().add("cancel-button");
-        cancelButton.setOnAction(evt -> setScreen(Screen.START));
-
-        Button sendButton = new Button("SENDEN");
-        sendButton.setPrefWidth(1);
-        sendButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        sendButton.getStyleClass().add("send-button");
-        sendButton.setOnAction(evt -> sendMessage());
-
-        HBox.setHgrow(cancelButton, Priority.ALWAYS);
-        HBox.setHgrow(sendButton, Priority.ALWAYS);
-
-        HBox buttonBox = new HBox(cancelButton, sendButton);
-        buttonBox.getStyleClass().add("button-box");
-        VBox.setVgrow(buttonBox, Priority.ALWAYS);
-
-        box.getChildren().add(buttonBox);
-
-        return box;
+        return new RoomsScreen(this);
     }
 
-    private void sendMessage() {
+    public void sendMessage() {
         Action action = getSelectedAction();
 
         getSelectedRooms().forEach(selectedRoom -> {
