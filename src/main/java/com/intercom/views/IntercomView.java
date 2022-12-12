@@ -108,6 +108,10 @@ public class IntercomView extends StackPane {
                 }
             });
 
+            builder = builder.get("/health", (req, res) -> {
+                res.send(room.getName() + " is alive and kicking");
+            });
+
             builder = builder.get("/response", (req, res) -> {
                 Optional<String> respondingRoomIdOptional = req.queryParams().first("responding-room");
                 if (respondingRoomIdOptional.isPresent()) {
@@ -133,7 +137,6 @@ public class IntercomView extends StackPane {
                     res.send("failure");
                 }
 
-                req.closeConnection();
             });
         }
 
@@ -396,7 +399,6 @@ public class IntercomView extends StackPane {
         try {
             URL url = new URL(s);
             URLConnection urlConnection = url.openConnection();
-            urlConnection.setConnectTimeout(2);
             urlConnection.connect();
             urlConnection.getContent(); // to really send the request across the wire
             return true;
