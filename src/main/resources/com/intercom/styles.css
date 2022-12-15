@@ -58,19 +58,24 @@
 }
 
 .response-screen {
-    -fx-background-color: white;
+    -fx-background-color: rgba(53, 75, 155, 1);
     -fx-spacing: 10px;
     -fx-alignment: center;
 }
 
 .response-screen .label {
-    -fx-alignment: center;
+    -fx-alignment: center-left;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 0px 20px;
+
 }
 
 .response-screen .close-button {
-    -fx-background-color: green;
+    -fx-background-color: rgba(151, 190, 77,1);
     -fx-text-fill: white;
     -fx-min-height: 50px;
+    -fx-font-weight: bold;
 }
 
 .confirmation-screen {
