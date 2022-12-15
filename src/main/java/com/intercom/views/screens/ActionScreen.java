@@ -16,15 +16,17 @@ public class ActionScreen extends HBox {
         HBox.setHgrow(vbox, Priority.ALWAYS);
 
         view.getConfig().getActions().forEach(action -> {
-            Button button = new Button(action.getName());
-            button.getStyleClass().add("action-button");
-            button.setOnAction(evt -> {
-                view.setSelectedAction(action);
-                view.setScreen(IntercomView.Screen.ROOMS);
-            });
-            vbox.getChildren().add(button);
-            button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-            VBox.setVgrow(button, Priority.ALWAYS);
+            if (view.getRoom().getAvailableActions().contains(action.getId())) {
+                Button button = new Button(action.getName());
+                button.getStyleClass().add("action-button");
+                button.setOnAction(evt -> {
+                    view.setSelectedAction(action);
+                    view.setScreen(IntercomView.Screen.ROOMS);
+                });
+                vbox.getChildren().add(button);
+                button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+                VBox.setVgrow(button, Priority.ALWAYS);
+            }
         });
 
         Button cancelButton = new Button("CANCEL");

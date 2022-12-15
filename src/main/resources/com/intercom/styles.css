@@ -2,6 +2,10 @@
     -fx-font-family: "Arial";
 }
 
+.intercom-view {
+     -fx-background-color: crimson;
+}
+
 .intercom-view.tile {
     -fx-border-color: black;
 }
@@ -65,8 +69,31 @@
     -fx-font-weight: bold;
     -fx-padding: 0px 20px;
     -fx-background-color: rgba(53, 75, 155, 1);
-
+    -fx-content-display: right;
+    -fx-graphic-text-gap: 20px;
 }
+
+.response-screen .label .ikonli-font-icon {
+    -fx-icon-size: 24px;
+}
+
+.response-screen .label.yes .ikonli-font-icon {
+    -fx-icon-color: rgba(151, 190, 77,1);
+}
+
+.response-screen .label.sent .ikonli-font-icon {
+    -fx-icon-color: rgba(151, 190, 77,1);
+}
+
+.response-screen .label.no .ikonli-font-icon {
+    -fx-icon-color: crimson;
+}
+
+.response-screen .label.not-sent .ikonli-font-icon {
+    -fx-icon-color: crimson;
+}
+
+
 
 .response-screen .close-button {
     -fx-background-color: rgba(151, 190, 77,1);
