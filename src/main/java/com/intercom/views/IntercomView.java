@@ -7,10 +7,7 @@ import com.intercom.model.Config.Room;
 import com.intercom.model.Request;
 import com.intercom.model.Response;
 import com.intercom.model.Response.Status;
-import com.intercom.views.screens.ActionScreen;
-import com.intercom.views.screens.ResponseScreen;
-import com.intercom.views.screens.RoomsScreen;
-import com.intercom.views.screens.StartScreen;
+import com.intercom.views.screens.*;
 import io.helidon.common.reactive.Single;
 import io.helidon.webserver.Routing;
 import io.helidon.webserver.WebServer;
@@ -240,41 +237,7 @@ public class IntercomView extends StackPane {
     }
 
     private Node createConfirmationScreen() {
-        Label label = new Label();
-        label.textProperty().bind(Bindings.createObjectBinding(() -> getRequest() != null ? getRequest().getAction().getName() : "", requestProperty()));
-        label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-
-        VBox.setVgrow(label, Priority.ALWAYS);
-
-        Button yesButton = new Button("Yes");
-        yesButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        yesButton.getStyleClass().add("yes");
-        yesButton.setPrefWidth(1);
-        yesButton.setOnAction(evt -> {
-            call("http://" + getRequest().getRoom().getHostName() + ":" + getRequest().getRoom().getPort() + "/response?responding-room=" + room.getId() + "&code=yes");
-            setScreen(Screen.START);
-        });
-
-        HBox.setHgrow(yesButton, Priority.ALWAYS);
-
-        Button noButton = new Button("No");
-        noButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-        noButton.getStyleClass().add("no");
-        noButton.setPrefWidth(1);
-        noButton.setOnAction(evt -> {
-            call("http://" + getRequest().getRoom().getHostName() + ":" + getRequest().getRoom().getPort() + "/response?responding-room=" + room.getId() + "&code=no");
-            setScreen(Screen.START);
-        });
-
-        HBox.setHgrow(noButton, Priority.ALWAYS);
-
-        HBox buttonBox = new HBox(yesButton, noButton);
-        buttonBox.getStyleClass().add("button-box");
-
-        VBox box = new VBox(label, buttonBox);
-        box.getStyleClass().add("confirmation-screen");
-
-        return box;
+        return new ConfirmationScreen(this);
     }
 
     private Node createResponseScreen() {
@@ -302,7 +265,7 @@ public class IntercomView extends StackPane {
         });
     }
 
-    private boolean call(String s) {
+    public boolean call(String s) {
         System.out.println("calling: " + s);
         try {
             URL url = new URL(s);

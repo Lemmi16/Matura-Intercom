@@ -76,10 +76,11 @@
 }
 
 .confirmation-screen {
-    -fx-background-color: white;
 }
 
 .confirmation-screen .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
     -fx-font-size: 24px;
     -fx-alignment: center;
 }
@@ -88,23 +89,23 @@
 }
 
 .confirmation-screen .button-box .button {
-    -fx-pref-height: 50px;
+    -fx-min-width: 60px;
 }
 
 .confirmation-screen .button-box .button.yes {
-    -fx-background-color: green;
+    -fx-background-color: rgba(151, 190, 77,1);
     -fx-text-fill: white;
 }
 
 .confirmation-screen .button-box .button.no {
-    -fx-background-color: red;
+    -fx-background-color: crimson;
     -fx-text-fill: white;
 }
 
 .cancel-button {
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-background-color: crimson !important;
+    -fx-background-color: crimson;
     -fx-pref-height: 50px;
 }
 
