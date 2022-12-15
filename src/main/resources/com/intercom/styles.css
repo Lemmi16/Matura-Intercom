@@ -54,13 +54,9 @@
 .screen .vbox .room-button .ikonli-font-icon {
     -fx-icon-color: rgba(151, 190, 77,1);
     -fx-icon-size: 20px;
-
 }
 
 .response-screen {
-    -fx-background-color: rgba(53, 75, 155, 1);
-    -fx-spacing: 10px;
-    -fx-alignment: center;
 }
 
 .response-screen .label {
@@ -68,6 +64,7 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 0px 20px;
+    -fx-background-color: rgba(53, 75, 155, 1);
 
 }
 

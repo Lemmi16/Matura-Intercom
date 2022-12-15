@@ -8,6 +8,7 @@ import com.intercom.model.Request;
 import com.intercom.model.Response;
 import com.intercom.model.Response.Status;
 import com.intercom.views.screens.ActionScreen;
+import com.intercom.views.screens.ResponseScreen;
 import com.intercom.views.screens.RoomsScreen;
 import com.intercom.views.screens.StartScreen;
 import io.helidon.common.reactive.Single;
@@ -184,7 +185,7 @@ public class IntercomView extends StackPane {
 
     private final ObservableList<Response> responses = FXCollections.observableArrayList();
 
-    private ObservableList<Response> getResponses() {
+    public ObservableList<Response> getResponses() {
         return responses;
     }
 
@@ -277,32 +278,7 @@ public class IntercomView extends StackPane {
     }
 
     private Node createResponseScreen() {
-        VBox box = new VBox();
-        box.getStyleClass().add("response-screen");
-
-        getResponses().addListener((Observable it) -> {
-            Platform.runLater(() -> {
-                box.getChildren().clear();
-
-                getResponses().forEach(response -> {
-                    Label label = new Label(response.getRoom().getName() + ": " + response.getCode());
-                    label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-                    VBox.setVgrow(label, Priority.ALWAYS);
-                    box.getChildren().add(label);
-                });
-
-                Button button = new Button("CLOSE");
-                button.getStyleClass().add("close-button");
-                button.setMaxWidth(Double.MAX_VALUE);
-                button.setOnAction(evt -> {
-                    getResponses().clear();
-                    setScreen(Screen.START);
-                });
-                box.getChildren().add(button);
-            });
-        });
-
-        return box;
+        return new ResponseScreen(this);
     }
 
     private Node createActionsScreen() {

@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 public class ActionScreen extends HBox {
 
     public ActionScreen(IntercomView view) {
-        getStyleClass().add("screen");
+        getStyleClass().addAll("screen", "action-screen");
 
         VBox vbox= new VBox();
         vbox.getStyleClass().add("vbox");

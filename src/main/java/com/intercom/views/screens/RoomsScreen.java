@@ -15,7 +15,7 @@ import org.kordamp.ikonli.materialdesign.MaterialDesign;
 public class RoomsScreen extends HBox {
 
     public RoomsScreen(IntercomView view) {
-        getStyleClass().add("screen");
+        getStyleClass().addAll("screen", "rooms-screen");
 
         VBox vbox= new VBox();
         vbox.getStyleClass().add("vbox");
